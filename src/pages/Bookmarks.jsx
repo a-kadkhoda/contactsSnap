@@ -15,7 +15,8 @@ const Bookmarks = () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    bookmarks.forEach((id) => {
+    bookmarks.forEach((id,index) => {
+      if(id === bookmarks[index-1]) return
       getUser(signal, id);
     });
 
