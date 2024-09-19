@@ -5,43 +5,21 @@ import Card from "../components/Card";
 import { useNavigate } from "react-router-dom";
 
 const Bookmarks = () => {
-  const { bookmarks, setShowSearch } = useContext(MyContext);
-  const [bookUsers, setBookUsers] = useState([]);
+  const { setShowSearch } = useContext(MyContext); 
+  const [recent,setRecent] = useState([])
+
   const navigate = useNavigate();
 
-  const recent = bookUsers.slice(-4);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     setShowSearch(false);
-    bookmarks.forEach((id,index) => {
-      if(id === bookmarks[index-1]) return
-      getUser(signal, id);
-    });
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks"))
+    const lastRecent = bookmarks.slice(-4)
+    setRecent(lastRecent)
 
-    return () => {
-      controller.abort();
-    };
-  }, [bookmarks]);
+    
+  }, []);
 
-  const getUser = async (signal, id) => {
-    try {
-      const res = await axios.get(
-        `https://freetestapi.com/api/v1/users/${id}`,
-        { signal }
-      );
-      if (res.status === 200) {
-        setBookUsers((prev) => [...prev, res.data]);
-      } else {
-        console.error(`HTTP error! Status: ${res.status}`);
-      }
-    } catch (error) {
-      if (!axios.isCancel(error)) {
-        console.error(error);
-      }
-    }
-  };
 
   const handleRoute = (id) => {
     navigate(`/cardinfo/${id}`);

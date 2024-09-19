@@ -1,4 +1,5 @@
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { json } from "react-router-dom";
 
 const MyContext = createContext(null);
 
@@ -7,6 +8,13 @@ const MyProvider = ({ children }) => {
   const [refValue, setRefValue] = useState(null);
   const [showSearch, setShowSearch] = useState(true);
   const [bookmarks, setBookmarks] = useState([]);
+  useEffect(()=>{
+    localStorage.setItem("bookmarks",JSON.stringify(bookmarks))
+
+    return ()=>{
+      localStorage.clear()
+    }
+  },[bookmarks])
   return (
     <MyContext.Provider
       value={{

@@ -10,7 +10,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [contacts, setContacts] = useState([]);
   const [filterdContacts, setFilterdContacts] = useState([]);
-  const { input, refValue, setBookmarks, bookmarks } =
+  const { input, refValue, setBookmarks, bookmarks ,setRecent } =
     useContext(MyContext);
   const navigate = useNavigate();
 
@@ -60,11 +60,22 @@ const Home = () => {
     } else setFilterdContacts(filtered);
   }, [input, contacts]);
 
-  const handleRoute = (id) => {
+  const handleClick = (item) => {
 
-    setBookmarks([...bookmarks, id]);
-    navigate(`/cardinfo/${id}`);
+    const recent = bookmarks.slice(-4)
+
+    const isAlreadyBooked = recent.some((book)=>{
+      return book.id === item.id
+    })
+    if(isAlreadyBooked) return
+
+    setBookmarks([...bookmarks, item]);
   };
+  const handleRoute = (id)=>{
+    navigate(`/cardinfo/${id}`);
+
+  }
+
 
   return (
     <div className="container mt-10 mb-20">
@@ -77,7 +88,10 @@ const Home = () => {
         ) : refValue === "" ? (
           contacts.map((item, index) => {
             return (
-              <div key={index} onClick={() => handleRoute(item.id)}>
+              <div key={index} onClick={() => {
+                handleClick(item);
+                handleRoute(item.id);
+              }}>
                 <Card {...item} />
               </div>
             );
@@ -85,7 +99,10 @@ const Home = () => {
         ) : (
           filterdContacts.map((item, index) => {
             return (
-              <div key={index} onClick={() => handleRoute(item.id)}>
+              <div key={index} onClick={() => {
+                handleClick(item);
+                handleRoute(item.id);
+              }}>
                 <Card {...item} />
               </div>
             );
