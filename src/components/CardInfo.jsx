@@ -49,7 +49,7 @@ const CardInfo = ({
       </svg>
 
       <div className="relative container">
-        <div className="container bg-white relative flex flex-col justify-center items-center w-[30%] space-y-12 p-8 border shadow-md rounded-lg z-10">
+        <div className="container bg-white relative flex flex-col justify-center items-center w-[90%] sm:w-[70%] md:w-[60%] lg:w-[40%] xl:w-[35%] space-y-12 p-8 border shadow-md rounded-lg z-10">
           <div className="absolute -top-12 ">
             <div className="w-24 h-24 bg-slate-200 rounded-full shadow-sm">
               <img
@@ -90,7 +90,7 @@ const CardInfo = ({
             </div>
           </div>
         </div>
-        <div className="absolute top-[130%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 container flex flex-col justify-center items-start w-[40%] px-10 bg-white shadow border rounded">
+        <div className="absolute top-[130%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 container flex flex-col justify-center items-start w-[80%] sm:w-[50%] lg:w-[40%] px-10 bg-white shadow border rounded">
           <div className="space-y-5 py-10 ">
             <div className="flex flex-col">
               <span className="text-zinc-400 text-sm">street:</span>

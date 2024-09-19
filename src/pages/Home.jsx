@@ -55,7 +55,6 @@ const Home = () => {
         return name;
       }
     });
-
     if (filtered.length === 0) {
       setFilterdContacts(users);
     } else setFilterdContacts(filtered);
@@ -68,26 +67,31 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-full w-max m-auto my-20 px-3 space-y-5 ">
-      {isLoading ? (
-        <Loading />
-      ) : refValue === "" ? (
-        contacts.map((item, index) => {
-          return (
-            <div key={index} onClick={() => handleRoute(item.id)}>
-              <Card {...item} />
-            </div>
-          );
-        })
-      ) : (
-        filterdContacts.map((item, index) => {
-          return (
-            <div key={index} onClick={() => handleRoute(item.id)}>
-              <Card {...item} />
-            </div>
-          );
-        })
-      )}
+    <div className="container mt-10 mb-20">
+      <div className="p-2 border-b-2 shadow">
+        <span>Contacts</span>
+      </div>
+      <div className="min-h-full w-max m-auto mt-10 px-3 space-y-5 ">
+        {isLoading ? (
+          <Loading />
+        ) : refValue === "" ? (
+          contacts.map((item, index) => {
+            return (
+              <div key={index} onClick={() => handleRoute(item.id)}>
+                <Card {...item} />
+              </div>
+            );
+          })
+        ) : (
+          filterdContacts.map((item, index) => {
+            return (
+              <div key={index} onClick={() => handleRoute(item.id)}>
+                <Card {...item} />
+              </div>
+            );
+          })
+        )}
+      </div>
     </div>
   );
 };
