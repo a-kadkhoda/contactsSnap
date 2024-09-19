@@ -10,7 +10,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [contacts, setContacts] = useState([]);
   const [filterdContacts, setFilterdContacts] = useState([]);
-  const { input, refValue, setShowSearch, setBookmarks, bookmarks } =
+  const { input, refValue, setBookmarks, bookmarks } =
     useContext(MyContext);
   const navigate = useNavigate();
 
@@ -61,7 +61,7 @@ const Home = () => {
   }, [input, contacts]);
 
   const handleRoute = (id) => {
-    setShowSearch(false);
+
     setBookmarks([...bookmarks, id]);
     navigate(`/cardinfo/${id}`);
   };

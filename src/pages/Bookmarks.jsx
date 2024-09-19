@@ -14,7 +14,7 @@ const Bookmarks = () => {
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-
+    setShowSearch(false);
     bookmarks.forEach((id,index) => {
       if(id === bookmarks[index-1]) return
       getUser(signal, id);
@@ -45,7 +45,7 @@ const Bookmarks = () => {
 
   const handleRoute = (id) => {
     navigate(`/cardinfo/${id}`);
-    setShowSearch(false);
+
   };
 
   return (

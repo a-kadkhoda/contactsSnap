@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
 import CardInfo from "../components/CardInfo";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import Toolbar from "../components/Toolbar";
+import { MyContext } from "../context/MyContext";
 
 const ContactsInfo = () => {
   const { id } = useParams();
   const [user, setUser] = useState({});
-
+  const {setShowSearch}= useContext(MyContext)
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-
+    setShowSearch(false)
     getUser(signal);
 
     return () => {
