@@ -10,7 +10,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [contacts, setContacts] = useState([]);
   const [filterdContacts, setFilterdContacts] = useState([]);
-  const { input, refValue, setBookmarks, bookmarks ,setRecent } =
+  const { input, refValue, setBookmarks, bookmarks  } =
     useContext(MyContext);
   const navigate = useNavigate();
 
